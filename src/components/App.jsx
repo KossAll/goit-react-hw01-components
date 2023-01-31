@@ -11,7 +11,6 @@ export const App = () => {
   return (
     <>
       < UserProfile
-        key={user.username}
         username={user.username}
         tag={user.tag}
         location={user.location}

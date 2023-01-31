@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { getRandomColor } from '../../utils/getRandomColor';
 
 export const Statistics = ({ title, stats }) => {
-  const elements = stats.map(event => (
+  const elements = stats.map(({id, label, percentage }) => (
     <li
-      key={event.id}
+      key={id}
       style={{
         backgroundColor: getRandomColor(),
       }}
       className={css.stats_item}
     >
-      <span className={css.label}>{event.label}</span>
-      <span className={css.percentage}>{event.percentage}%</span>
+      <span className={css.label}>{label}</span>
+      <span className={css.percentage}>{percentage}%</span>
     </li>
   ));
   return (
@@ -26,12 +26,12 @@ export const Statistics = ({ title, stats }) => {
 };
 
 Statistics.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   stats: PropTypes.arrayOf(
     PropTypes.exact({
       id: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       percentage: PropTypes.number.isRequired,
-    })
-  ),
+    }).isRequired,
+  ).isRequired,
 };
